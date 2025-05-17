@@ -1,0 +1,177 @@
+Identifica a versão do git na maquina:
+	git version
+
+
+Lista as configurações do git na maquina:
+	git config --global --list
+
+
+Edita as configurações do git (no exemplo abaixo, o nome de usuario):
+	git config --global user.name "Deivison Alencar"
+
+
+Identifica em qual diretorio estamos e mostra todas as pastas contidas nele:
+	dir
+ou
+	ls
+
+Para exibir inclusive as pastas e arquivos ocultos:
+	dir -Force
+ou
+	ls - Force
+ou
+	ls -a
+
+
+Seleciona uma determina pasta do diretorio onde se está: (Por exemplo, estou em documentos e quero ir para a pasta 'teste' dentro de documentos):
+	cd teste
+
+
+Voltar para a pasta anterior, isto é, voltar para a pasta documentos:
+	cd ..
+
+
+Para sair de uma pasta e logo entrar em outra não é necessario fazer os dois comandos cd separados:
+	cd ../ nome_da_segunda_pasta
+	
+
+Criar uma nova pasta no diretorio onde estamos:
+	mkdir nome_pasta
+
+
+Apaga uma pasta no diretorio em que estamos:
+	rmdir nome_pasta
+
+
+Apaga um arquivo na pasta em que estamos:
+	del nome_arquivo
+
+
+Apaga o historico do prompt de comando:
+	cls
+ou
+	clear
+
+
+Move um diretorio/arquivo entre pastas, mas serve também pra renomear o arquivo no mesmo local:
+	move caminho_completo_atual caminho_completo_novo
+
+
+Para criar um novo repositorio(Se estiver em uma pasta vazia, o repositorio será vazio, caso já haja arquivos, o repositorio já será iniciado com esses arquivos):
+	git init
+
+
+Para validar qual o status dos arquivos/diretorio no repositorio:
+	git status
+
+
+Para enviar arquivos/diretorio para o stage:
+	git add nome_arquivo
+
+
+Para enviar todos os arquivos/diretorio para o stage:
+	git add .
+
+
+Para retirar um arquivo/diretorio do stage:
+	git rm --cached nome_arquivo
+
+
+Para commitar um arquivo/diretorio já no stage:
+	git commit -m "mensagem que queremos escrever no commit"
+
+
+Para listar os commits feitos até o momento de forma detalhada:
+	git log
+
+
+Para listar os commits feitos até o momento de forma resumida:
+	git log --oneline
+
+
+Há três maneiras de desfazer um commit, cada uma com uma classificação de risco:
+
+
+O checkout serve apenas para "visualizar" o projeto em um commit especifico
+	git checkout id_do_comit
+
+
+Para voltar para o commit atual:
+	git checkout main
+
+
+O revert serve para reverter apenas um commit especifico
+	git revert id_do_comit
+
+
+Já o reset apaga todos o historico além do commit especifico (se houver alterações ainda não commitadas, essas permanecerão)
+	git reset id_do_comit
+
+
+Para que sejam apagados todos os commites além do especificado, incluindo alterações ainda não commitadas:
+	git reset id_do_comit --hard
+
+
+Para que o git ignore um arquivo/pasta (Por conter senhas ou outros motivos)
+	Cria-se um arquivo chamado .gitignore e inclui o nome dos arquivos a serem ignorados
+
+
+Para criar uma branchs, isto é criar uma ramificação do projeto:
+	git branch nome_da_branche
+
+
+Para listar as branchs de um projeto: (A que estiver em verde e com o asteristico é a branch selecionada)
+	git branch
+
+
+Por padrão a branch principal sera a 'master' ou 'main'
+
+
+Para selecionar outra branchs, também utilizamos o checkout:
+	git checkout nome_da_branche
+
+
+Para deletar um branch (ela não pode estar seleciona), e se ela tiver modificações ainda não fundidas na branch principal usar -D
+	git branch -d nome_da_branche
+
+
+Para fundir branchs, selecione a branch de destino (geralmente a branch principal):
+	git merge nome_da_outra_branch
+
+
+No dia a dia é comum existir conflitos em branchs, principalmente quando varias pessoas estão trabalhando simutaneamente
+Nesse caso, no mometo da merge o git informará a necessidade de ajustar os conflitos.
+
+
+Para vincular um repositorio local a um repositorio do github podemos fazer através do SSH:
+	git remote add nome_do_remote endereço_ssh_do_repositorio_git_hub
+
+
+Para visualizar o ssh já cadastrado:
+	git remote -v
+
+
+Para alterar o endereço de um ssh já cadastrado:
+	git remote set-url nome_do_remote endereço_ssh_do_repositorio_git_hub
+
+
+Para enviar os commits para o github:
+	git push endereço_do_repositorio master
+ou
+	git push origin(conforme já cadastrado) master
+
+
+Para trazer o projeto atualizado do github
+	git pull endereço_do_repositorio master
+ou
+	git pull origin(conforme já cadastrado) master
+
+
+Como boas práticas não devemos commitar diretamente na branch principal(master/main), sendo assim devemos
+-> criar uma nova branch
+-> fazer as alterações
+-> Commitar
+-> Fazer o push da branch criada
+-> Solicitar o pull request no github
+-> Uma vez aprovado, excluir a branch já fundida
+
